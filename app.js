@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const session = require('express-session')
 
 const mongooseConnect = require('./model/config')
 
@@ -10,6 +11,14 @@ var indexRouter = require('./routes/index');
 
 
 var app = express();
+
+app.use(session({
+    secret: 'cang',
+    resave: false,
+    saveUninitialized: false,
+    cookie: { secure: false }
+}))
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
