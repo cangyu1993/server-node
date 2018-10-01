@@ -56,7 +56,7 @@ router.post('/login',async (req,res)=>{
             }else {
                 res.json({
                     code:400,
-                    msg:'密码不存在'
+                    msg:'密码错误'
                 })
             }
         }
@@ -64,6 +64,21 @@ router.post('/login',async (req,res)=>{
         res.json({
             code:400,
             msg:err
+        })
+    }
+})
+
+router.post('/outlogin',(req,res)=>{
+    if (req.session.user){
+        // res.session.user = null
+        res.json({
+            code:200,
+            msg:'退出登录成功'
+        })
+    } else {
+        res.json({
+            code:403,
+            msg:'用户未登录状态，无法退出登录'
         })
     }
 })
