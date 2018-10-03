@@ -61,5 +61,39 @@ router.get('/article', (req, res) => {
         })
 })
 
+router.get('/article/:id',(req,res)=>{
+    let {id} = req.params
+    articleModel.findById(id)
+        .populate({
+            path: 'author',
+            select: '-password -email'
+        })
+        .populate({
+            path: 'categories'
+        })
+        .then(data=>{
+        res.json({
+            code:200,
+            data,
+        })
+    })
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 module.exports = router;

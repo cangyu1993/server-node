@@ -7,7 +7,7 @@ router.post('/user',async (req,res,next)=>{
     try {
         const {username,password,email} = req.body
         const avatarNumber = Math.ceil(Math.random()*9)
-        const avatar = `http://pbl.yaojunrong.com/avatar${avatarNumber}.jpg`
+        const avatar = `http://pbl.yaojunrong.com/avatar${avatarNumber}.jpg || https://img3.doubanio.com/view/photo/l/public/p2358026713.webp`
         console.log(data);
         if (password&&password.length >= 5){
             const data = await userModel.create({username,password,email,avatar});
