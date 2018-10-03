@@ -6,13 +6,13 @@ const articleModel = require('../model/article');
 router.post('/article', async (req, res, next) => {
     try {
         if (req.session.user) {
-            const {content, contentText, title, category} = req.body
+            const {content,title,contentText,category} = req.body
             if (title) {
                 const data = await articleModel.create(
                     {
                         content,
-                        contentText,
                         title,
+                        contentText,
                         category,
                         author: req.session.user._id
                     })
@@ -51,7 +51,7 @@ router.get('/article', (req, res) => {
             select: '-password -email'
         })
         .populate({
-            path: 'category'
+            path: 'categories'
         })
         .then(data => {
             res.json({

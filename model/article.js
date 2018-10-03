@@ -6,11 +6,11 @@ const article = new mongoose.Schema({
         title: String,
         content: String,
         contentText: String,
+        category:String,
         author:{
             type:Schema.Types.ObjectId,
             ref:'user'
         },
-        category:String,
         // category:{
         //     type: Schema.Types.ObjectId,
         //     ref:'category'

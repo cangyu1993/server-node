@@ -1,7 +1,7 @@
 const {Router} = require('express');
 
 const router = Router();
-const categories = require('../model/categories');
+const categories = require('../model/category');
 
 router.get('/category', (req,res)=>{
     categories.find().then(data=>{
