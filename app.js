@@ -5,7 +5,8 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const session = require('express-session')
 
-const mongooseConnect = require('./model/config')
+const MongoStore = require('connect-mongo')(session)
+const mongooseConnection = require("./model/config")
 
 var indexRouter = require('./routes/index');
 
@@ -16,7 +17,8 @@ app.use(session({
     secret: 'cang',
     resave: false,
     saveUninitialized: false,
-    cookie: { secure: false }
+    cookie: { secure: false },
+    store: new MongoStore({ mongooseConnection: mongooseConnection})
 }))
 
 

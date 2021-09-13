@@ -3,7 +3,7 @@ const {Router} = require('express');
 const router = Router();
 const categories = require('../model/category');
 
-router.get('/category', (req,res)=>{
+router.get('/getAllCategory', (req,res)=>{
     categories.find().then(data=>{
         res.json({
             code:200,
@@ -13,7 +13,7 @@ router.get('/category', (req,res)=>{
     })
 })
 
-router.get('/category/:id',(req,res)=>{
+router.get('/getCategory/:id',(req,res)=>{
     let {id} = req.params
     categories.findById(id).then(data=>{
         res.json({
@@ -24,7 +24,7 @@ router.get('/category/:id',(req,res)=>{
     })
 })
 
-router.post('/category',async (req,res,next)=>{
+router.post('/createdCategory',async (req,res,next)=>{
     try {
         const {name} = req.body
         const data = await categories.create({name})
